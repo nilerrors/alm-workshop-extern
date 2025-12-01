@@ -1,0 +1,31 @@
+name: Release Application
+
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  CONTAINER_REPOSITORY: quay.io/nilerrors
+  CONTAINER_IMAGE: alm-workshop
+  OPENSHIFT_NAMESPACE: alm-workshop-dev
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/dev'
+    environment: development
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+
+      - name: Apply Openshift YAML
+        run: |
+          oc apply -f ./infra/openshift.yaml
