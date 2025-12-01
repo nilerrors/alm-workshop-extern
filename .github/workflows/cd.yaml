@@ -8,7 +8,7 @@ on:
 env:
   CONTAINER_REPOSITORY: quay.io/nilerrors
   CONTAINER_IMAGE: alm-workshop
-  OPENSHIFT_NAMESPACE: alm-workshop-dev
+  OPENSHIFT_NAMESPACE: nilerrors-dev
 
 jobs:
   deploy:
