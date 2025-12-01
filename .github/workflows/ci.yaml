@@ -3,7 +3,7 @@ name: Golang Docker Build
 on: push
 
 env:
-  CONTAINER_REPOSITORY: quay.io/mortierdaan # PUT YOUR OWN USERNAME HERE
+  CONTAINER_REPOSITORY: quay.io/nilerrors
   CONTAINER_IMAGE: alm-workshop
   GOLANG_VERSION: 1.23
 
